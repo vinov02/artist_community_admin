@@ -15,11 +15,11 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  RegExp emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
-  RegExp passwordRegex = RegExp(r'^[a-zA-Z0-9]{8}$');
+  RegExp emailRegex = RegExp(r'^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$');
+  RegExp passwordRegex = RegExp(r'^[a-zA-Z\d]{8}$');
+  final _formkey = GlobalKey<FormState>();
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final _formkey = GlobalKey<FormState>();
 
 
   Future<void> _login() async {
@@ -47,6 +47,7 @@ class _LoginPageState extends State<LoginPage> {
         SharedPreferences prefs = await SharedPreferences.getInstance();
         await prefs.setString('token', token);
 
+        // ignore: use_build_context_synchronously
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(responseBody['message']),
@@ -56,13 +57,11 @@ class _LoginPageState extends State<LoginPage> {
         // ignore: use_build_context_synchronously
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => const SideMenu()));
-        print(response.body);
+        // print(response.body);
       } else {
         var errorResponse = jsonDecode(response.body);
-        print(errorResponse);
         final errorMessage = errorResponse['error'];
-
-
+        // ignore: use_build_context_synchronously
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             backgroundColor: Colors.red,

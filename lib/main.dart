@@ -1,4 +1,7 @@
+import 'package:artist_community_admin/components/side_menu.dart';
+import 'package:artist_community_admin/screens/dashboard_screen.dart';
 import 'package:artist_community_admin/screens/login_page.dart';
+import 'package:artist_community_admin/screens/products.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -31,7 +34,7 @@ class MyApp extends StatelessWidget {
     return  MaterialApp(
       title: 'ARTISPIC',
       debugShowCheckedModeBanner: false,
-      home:  const LoginPage(),
+      home:   const SideMenu(),
       builder: EasyLoading.init(),
     );
   }

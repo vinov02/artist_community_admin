@@ -26,6 +26,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
   dynamic image;
   String? fileName;
 
+  // ignore: non_constant_identifier_names
   PickImage() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
       type: FileType.image, allowMultiple: false
@@ -61,7 +62,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
     } on FirebaseException catch (e) {
       clear();
       EasyLoading.dismiss();
-      print(e.toString());
+      // print(e.toString());
     }
   }
 

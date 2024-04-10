@@ -30,6 +30,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
 
       if (response.statusCode == 200) {
         await prefs.remove('token');
+        // ignore: use_build_context_synchronously
         Navigator.pop(context);
         // ignore: use_build_context_synchronously
         ScaffoldMessenger.of(context).showSnackBar(
@@ -39,14 +40,15 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
           ),
         );
       } else {
-        print(response.body);
+        //print(response.body);
         throw Exception('Failed to logout');
       }
     } catch (e) {
       // Handle errors
-      print('Error logging out: $e');
+     // print('Error logging out: $e');
+      // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
+        const SnackBar(
           content: Text('Error logging out'),
           backgroundColor: Colors.red,
         ),
@@ -138,25 +140,27 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Row(
-                                    children: [
-                                      Icon(
-                                        Icons.comment,
-                                        size: 26.0,
-                                        color: Colors.red,
-                                      ),
-                                      SizedBox(
-                                        width: 15.0,
-                                      ),
-                                      Text(
-                                        "Comments",
-                                        style: TextStyle(
+                                  SingleChildScrollView(
+                                    child: Row(
+                                      children: [
+                                        Icon(
+                                          Icons.comment,
+                                          size: 26.0,
                                           color: Colors.red,
-                                          fontSize: 26.0,
-                                          fontWeight: FontWeight.bold,
                                         ),
-                                      )
-                                    ],
+                                        SizedBox(
+                                          width: 15.0,
+                                        ),
+                                        Text(
+                                          "Comments",
+                                          style: TextStyle(
+                                            color: Colors.red,
+                                            fontSize: 26.0,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        )
+                                      ],
+                                    ),
                                   ),
                                   SizedBox(
                                     height: 20.0,

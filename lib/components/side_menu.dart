@@ -1,4 +1,7 @@
 import 'package:artist_community_admin/screens/artist_details_screen.dart';
+import 'package:artist_community_admin/screens/exhibition_details.dart';
+import 'package:artist_community_admin/screens/paintings_page.dart';
+import 'package:artist_community_admin/screens/settings_screen.dart';
 import 'package:artist_community_admin/screens/user_details_page.dart';
 import 'package:date_time_format/date_time_format.dart';
 import 'package:flutter/material.dart';
@@ -6,13 +9,13 @@ import 'package:flutter_admin_scaffold/admin_scaffold.dart';
 import '../screens/category_screen.dart';
 import '../screens/dashboard_screen.dart';
 import '../screens/main_category_screen.dart';
+import '../screens/products.dart';
 import '../screens/sub_category_screen.dart';
 
 class SideMenu extends StatefulWidget {
   static const String id = 'side-menu';
 
   const SideMenu({super.key});
-
   @override
   State<SideMenu> createState() => _SideMenuState();
 }
@@ -51,6 +54,26 @@ class _SideMenuState extends State<SideMenu> {
           _selectedScreen = const UserDetailsPage();
         });
         break;
+      case SettingsScreen.id :
+        setState(() {
+          _selectedScreen = const SettingsScreen();
+        });
+        break;
+      case ImageUploadScreen.id :
+        setState(() {
+          _selectedScreen =  const ImageUploadScreen();
+        });
+        break;
+     case ExhibitionDetails.id :
+      setState(() {
+        _selectedScreen =  const ExhibitionDetails();
+      });
+      break;
+     case PaintingsPage.id :
+        setState(() {
+          _selectedScreen =  const PaintingsPage();
+        });
+        break;
     }
   }
 
@@ -63,11 +86,11 @@ class _SideMenuState extends State<SideMenu> {
           AdminMenuItem(
             title: 'Dashboard',
             route: DashBoardScreen.id,
-            icon: Icons.dashboard,
+            icon: Icons.dashboard_outlined,
           ),
           AdminMenuItem(
             title: 'Categories',
-            icon: Icons.category,
+            icon: Icons.category_outlined,
             children: [
               AdminMenuItem(
                 title: 'Category',
@@ -86,14 +109,33 @@ class _SideMenuState extends State<SideMenu> {
           AdminMenuItem(
             title: 'Artist Details',
             route: ArtistDetailsScreen.id,
-            icon: Icons.person,
+            icon: Icons.person_2_outlined,
           ),
           AdminMenuItem(
             title: 'User Details',
             route: UserDetailsPage.id,
-            icon: Icons.supervised_user_circle_rounded,
+            icon: Icons.supervised_user_circle_outlined,
           ),
-
+          AdminMenuItem(
+            title: 'Add Product Category',
+            route: ImageUploadScreen.id,
+            icon: Icons.image,
+          ),
+          AdminMenuItem(
+            title: 'Exhibition Details',
+            route: ExhibitionDetails.id,
+            icon: Icons.post_add,
+          ),
+          AdminMenuItem(
+            title: 'Paintings Details',
+            route: PaintingsPage.id,
+            icon: Icons.collections,
+          ),
+          AdminMenuItem(
+            title: 'Settings',
+            route: SettingsScreen.id,
+            icon: Icons.settings_outlined,
+          ),
         ],
         selectedRoute: SideMenu.id,
         onSelected: (item) {
@@ -105,12 +147,12 @@ class _SideMenuState extends State<SideMenu> {
         header: Container(
           height: 50,
           width: double.infinity,
-          color: const Color(0xff444444),
+          color: Colors.deepPurple,
           child: const Center(
             child: Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                'Artispic',
+                '   Artispic',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 18
@@ -122,7 +164,7 @@ class _SideMenuState extends State<SideMenu> {
         footer: Container(
           height: 50,
           width: double.infinity,
-          color: const Color(0xff444444),
+          color: Colors.deepPurple,
           child:  Center(
             child: Text(
               DateTimeFormat.format(DateTime.now(), format: AmericanDateFormats.dayOfWeek),

@@ -11,7 +11,7 @@ class CategoryListWidget extends StatefulWidget {
 
 class _CategoryListWidgetState extends State<CategoryListWidget> {
   Widget categoryWidget(data) {
-    print("Image URL: ${data['image']}");
+    //print("Image URL: ${data['image']}");
     return Card(
       color: Colors.grey.shade400,
       child: Padding(
@@ -19,7 +19,7 @@ class _CategoryListWidgetState extends State<CategoryListWidget> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             SizedBox(
               height: 60,
               width: 60,
@@ -29,11 +29,11 @@ class _CategoryListWidgetState extends State<CategoryListWidget> {
                   if (loadingProgress == null) {
                     return child;
                   }
-                  return CircularProgressIndicator();
+                  return const CircularProgressIndicator();
                 },
                 errorBuilder: (context, error, stackTrace) {
-                  print("Error loading image: $error");
-                  return Icon(Icons.error); // Placeholder for failed image
+                  //print("Error loading image: $error");
+                  return const Icon(Icons.error); // Placeholder for failed image
                 },
               ),
             ),
@@ -46,12 +46,12 @@ class _CategoryListWidgetState extends State<CategoryListWidget> {
 
   @override
   Widget build(BuildContext context) {
-    FirebaseService _services = FirebaseService();
+    FirebaseService services = FirebaseService();
     return StreamBuilder<QuerySnapshot>(
-      stream: _services.categories.snapshots(),
+      stream: services.categories.snapshots(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.hasError) {
-          return Text('Something went wrong');
+          return const Text('Something went wrong');
         }
 
         if (snapshot.connectionState == ConnectionState.waiting) {
