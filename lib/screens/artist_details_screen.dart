@@ -69,7 +69,6 @@ class _ArtistDetailsScreenState extends State<ArtistDetailsScreen> {
             ElevatedButton(
               style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
               onPressed: () async {
-                // Retrieve values from text controllers
                 String newName = nameController.text;
                 String newEmail = emailController.text;
                 String newMobile = mobileController.text;
@@ -121,7 +120,6 @@ class _ArtistDetailsScreenState extends State<ArtistDetailsScreen> {
         );
       }
     } catch (e) {
-      print('Error: $e');
       // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(

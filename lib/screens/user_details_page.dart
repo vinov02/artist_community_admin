@@ -86,8 +86,8 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
                         user.name.toLowerCase().contains(_searchQuery.toLowerCase()))
                         .toList();
                     return SizedBox(
-                      width: double.infinity, // Set width to fill the available space
-                      height: 400, // Set height to increase the size of the table
+                      width: double.infinity,
+                      height: 400,
                       child: UserTable(users: filteredUsers),
                     );
                   }
@@ -100,7 +100,6 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
     floatingActionButton:FloatingActionButton(
       backgroundColor: Colors.purple,
       onPressed: () {
-        // Show dialog using Builder widget to access the context
         showDialog(
           context: context,
           builder: (BuildContext context) {
@@ -136,12 +135,9 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
                       onPressed: () async {
-                        // Get values from text controllers
                         String name = nameController.text;
                         String email = emailController.text;
                         String mobile = mobileController.text;
-
-                        // Perform API call to add user
                         final response = await http.post(
                           Uri.parse('$baseURL/user/register'),
                           body: {
@@ -163,7 +159,7 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
                           );
                           setState(() {
                             _futureUsers = fetchUsers();
-                          }); // Refresh the user list
+                          }); 
                         } else {
                           print(response.body);
                           // ignore: use_build_context_synchronously

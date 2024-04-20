@@ -44,7 +44,6 @@ class _MyDataState extends State<MyData> {
                   itemCount: products.length,
                   itemBuilder: (BuildContext context , int index ){
                     final imageUrl = 'http://127.0.0.1:8000${products[index].image}';
-                    print('Image URL: ${products[index].image}');
                     return  Card(
                       child: Padding(
                         padding: const EdgeInsets.all(12.0),

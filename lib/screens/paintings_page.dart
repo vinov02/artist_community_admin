@@ -68,12 +68,19 @@ class _PaintingsPageState extends State<PaintingsPage> {
             _isLoading = false;
           });
         } else {
-          print('Invalid painting data format');
+          // ignore: use_build_context_synchronously
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Invalid painting data format'),
+              backgroundColor: Colors.green,
+            ),
+          );
         }
       } else {
         print('Failed to fetch paintings: ${response.statusCode}');
       }
     } catch (e) {
+
       print('Error fetching paintings: $e');
     } finally {
       setState(() {
